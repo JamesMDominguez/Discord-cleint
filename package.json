@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.9",
+    "graphql": "^16.5.0",
+    "graphql-ws": "^5.10.0",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
