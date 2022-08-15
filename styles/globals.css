@@ -24,3 +24,79 @@ a {
     background: white;
   }
 }
+
+.servers {
+  margin: 0;
+  padding: 10px;
+  width: 4.5rem;
+  background-color: #202225;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.channels {
+  margin: 0;
+  padding: 10px;
+  left: 4.5rem;
+  top: 3rem;
+  width: 15rem;
+  background-color: #2E3036;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.channelName{
+  left: 4.5rem;
+  position: fixed;
+  background-color: #2E3036;
+  height: 3rem;
+  width: 15rem;
+
+  -webkit-box-shadow: 0 4px 6px -6px rgb(0, 0, 0);
+  -moz-box-shadow: 0 4px 6px -6px rgb(0, 0, 0);
+  box-shadow: 0 4px 8px -6px rgb(0, 0, 0);
+}
+
+.channelNav{
+  left: 19.5rem;
+  position: fixed;
+  height: 3rem;
+  width: 100%;
+  background-color: #37393F;
+  
+
+  -webkit-box-shadow: 0 4px 6px -6px rgb(0, 0, 0);
+  -moz-box-shadow: 0 4px 6px -6px rgb(0, 0, 0);
+  box-shadow: 0 4px 8px -6px rgb(0, 0, 0);
+}
+
+.serverMembers{
+  right: 0;
+  position: fixed;
+  height: 100%;
+  top: 3rem;
+  width: 15rem;
+  background-color: #2f3136;
+}
+
+.messages{
+  left: 19.5rem;
+  top: 3rem;
+  bottom: 4rem;
+  right: 15rem;
+  position: fixed;
+  background-color: #37393F;
+}
+
+.msgInput{
+  left: 19.5rem;
+  bottom: 0rem;
+  height: 4rem;
+  right: 15rem;
+  position: fixed;
+  background-color: #37393F;
+  padding-right: 10px;
+  padding-left: 10px;
+}
