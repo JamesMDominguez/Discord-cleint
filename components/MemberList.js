@@ -3,8 +3,8 @@ export default function MemberList({members}) {
         <div style={{marginTop:"20px"}}>
             {members.map((member) => {
                 return (
-                    <div style={{ display: "flex" }}>
-                        <img key={member.id} src={member.user.profile_image} style={{ width: "2.5rem", height: "2.5rem", margin: "auto",marginLeft:"20px",marginRight:"20px", borderRadius: "50%" }} />
+                    <div key={member.id} style={{ display: "flex" }}>
+                        <img src={member.user.profile_image} style={{ width: "2.5rem", height: "2.5rem", margin: "auto",marginLeft:"20px",marginRight:"20px", borderRadius: "50%" }} />
                         <p style={{ color: "white" }}>{member.user.name}</p>
                     </div>
                 )

@@ -1,10 +1,21 @@
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
+import { gql,useMutation } from '@apollo/client'
+import { useState } from 'react';
 
-export default function MessageInput(){
+const CREATE_MSG = gql`mutation CreateMessage($content: String!, $userId: String!, $channelId: String!, $deleted: Boolean!) {
+    createMessage(content: $content, userID: $userId, channelID: $channelId, deleted: $deleted) {
+      id
+      content
+    }
+  }`;
+
+export default function MessageInput({currentChannel}){
+    const [createMSG] = useMutation(CREATE_MSG)
+    const [msg,setMsg] = useState("")
+    const handleChange = (e) => setMsg(e.target.value)
     return(
         <Paper
         component="form"
@@ -16,15 +27,23 @@ export default function MessageInput(){
         <InputBase
             sx={{ ml: 1, flex: 1, color: '#9e9e9e' }}
             placeholder="Messages"
-            inputProps={{ 'aria-label': 'search google maps' }}
+            value={msg}
+            onChange={handleChange}
+            onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                   e.preventDefault()
+                   createMSG({
+                    variables: {
+                      content: msg,
+                      userId:"62f2bb164c33fa6071e4149c",
+                      channelId: currentChannel,
+                      deleted: false
+                    }
+                  })
+                  setMsg("")
+                }
+             }}
         />
-        <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-            +
-        </IconButton>
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
-            +
-        </IconButton>
     </Paper>
     )
 }

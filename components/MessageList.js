@@ -23,7 +23,7 @@ subscription MessageCreated {
 `
 
 
-export default function MessageList(){
+export default function MessageList() {
     const router = useRouter()
     const { id = [] } = router.query
     const { data, loading, error, subscribeToMore } = useQuery(GET_USER_DATA, { variables: { channelId: id[1] } });
@@ -49,21 +49,21 @@ export default function MessageList(){
         return null;
     }
 
-    return(
+    return (
         <>
-        {
-        data.getMessages.map((message) => {
-            return (
-                <div key={message.id} style={{ display: "flex" }}>
-                    <img src={message.user.profile_image} style={{ width: "3rem", height: "3rem", borderRadius: "50%", margin: "10px" }} />
-                    <div>
-                        <p style={{ margin: "0px" }}>{message.user.name}</p>
-                        <p style={{ color: "white", marginTop: "5px" }}>{message.content}</p>
-                    </div>
-                </div>
-            )
-        })
-        }
+            {
+                data.getMessages.map((message) => {
+                    return (
+                        <div key={message.id} style={{ display: "flex" }}>
+                            <img src={message.user.profile_image} style={{ width: "3rem", height: "3rem", borderRadius: "50%", margin: "10px" }} />
+                            <div>
+                                <p style={{ margin: "0px", color: "#325ea8", paddingTop: "10px" }}>{message.user.name}</p>
+                                <p style={{ color: "white", marginTop: "5px" }}>{message.content}</p>
+                            </div>
+                        </div>
+                    )
+                })
+            }
         </>
     )
 }

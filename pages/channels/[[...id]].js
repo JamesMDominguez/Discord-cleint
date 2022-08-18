@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import MessageList from '../../components/MessageList'
 import MessageInput from '../../components/MessageInput'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import User from '../../components/User'
 import MemberList from '../../components/MemberList'
 
@@ -14,6 +14,7 @@ const CHANNELS = gql`query GetChannels($serverId: ID!) {
         name
         id
       members {
+        id
           user {
             name
             profile_image
@@ -24,21 +25,22 @@ const CHANNELS = gql`query GetChannels($serverId: ID!) {
   }`
 
 export default function channel() {
+    const [currentChannel, setCurrentChannel] = useState([])
     const router = useRouter()
     const { id = [] } = router.query
-
     const {data,loading} = useQuery(CHANNELS,{variables: {serverId: id[0]}})
 
     useEffect(()=>{
         if(!loading){
-            console.log(data.getChannels)
+            setCurrentChannel([data.getChannels[0].name,data.getChannels[0].id])
             router.push(`${id[0]}/${data.getChannels[0].id}`)
         }
-    },[loading])
+    },[id.length,loading])
 
     if(loading){
         return <p style={{color:"white"}}>loading...</p>
     }
+
 
     return (
             <>
@@ -46,11 +48,12 @@ export default function channel() {
                     {
                         data.getChannels.map((channel)=>{
                             return(
-                                <>
-                                <div key={channel.id} onClick={()=> router.push(`${id[0]}/${channel.id}`)}>
+                                <div key={channel.id} onClick={()=> {
+                                    router.push(`${id[0]}/${channel.id}`)
+                                    setCurrentChannel([channel.name,channel.id])
+                                    }}>
                                  <p style={{color:"#8E9297",marginLeft:"10px"}}># {channel.name}</p>
                                 </div>
-                                </>
                             )
                         })
                     }
@@ -68,16 +71,15 @@ export default function channel() {
                     <MessageList/>
                 </div>
 
-                <div className='channelNav'>
+                <div className='channelNav' style={{color:"white",paddingTop:"10px"}}>
+                    <h3 style={{margin:"0px",marginLeft:"20px"}}># {currentChannel[0]}</h3>
                 </div>
 
                 <div className='msgInput'>
-                    <MessageInput />
+                    <MessageInput currentChannel={currentChannel[1]}/>
                 </div>
 
-                <div className='userName'>
-                    <User/>
-                </div>
+ 
             </>
         )
     
