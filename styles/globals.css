@@ -21,7 +21,7 @@ a {
   }
   body {
     color: rgb(33, 37, 129);
-    background: white;
+    background: #2E3036;
   }
 }
 
@@ -36,14 +36,12 @@ a {
 }
 
 .channels {
-  margin: 0;
-  padding: 10px;
   left: 4.5rem;
   top: 3rem;
+  bottom: 3rem;
   width: 15rem;
   background-color: #2E3036;
   position: fixed;
-  height: 100%;
   overflow: auto;
 }
 
@@ -59,6 +57,15 @@ a {
   box-shadow: 0 4px 8px -6px rgb(0, 0, 0);
 }
 
+.userName{
+  left: 4.5rem;
+  bottom: 0rem;
+  position: fixed;
+  background-color: #292B2F;
+  height: 3rem;
+  width: 15rem;
+}
+
 .channelNav{
   left: 19.5rem;
   position: fixed;
@@ -66,7 +73,6 @@ a {
   width: 100%;
   background-color: #37393F;
   
-
   -webkit-box-shadow: 0 4px 6px -6px rgb(0, 0, 0);
   -moz-box-shadow: 0 4px 6px -6px rgb(0, 0, 0);
   box-shadow: 0 4px 8px -6px rgb(0, 0, 0);
@@ -88,6 +94,7 @@ a {
   right: 15rem;
   position: fixed;
   background-color: #37393F;
+  overflow: scroll;
 }
 
 .msgInput{

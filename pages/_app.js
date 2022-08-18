@@ -4,6 +4,7 @@ import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws';
 import { split, HttpLink } from '@apollo/client';
 import { getMainDefinition } from '@apollo/client/utilities';
+import ServerList from '../components/ServersList'
 
 const httpLink = new HttpLink({
   uri: 'http://localhost:2000/'
@@ -41,6 +42,7 @@ const client = new ApolloClient({
 function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
+      <ServerList/>
       <Component {...pageProps} />
     </ApolloProvider>
   )
