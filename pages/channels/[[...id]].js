@@ -24,7 +24,7 @@ const CHANNELS = gql`query GetChannels($serverId: ID!) {
     }
   }`
 
-export default function channel() {
+export default function Channel() {
     const [currentChannel, setCurrentChannel] = useState([])
     const router = useRouter()
     const { id = [] } = router.query
