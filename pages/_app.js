@@ -7,14 +7,14 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import ServerList from '../components/ServersList'
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:2000/'
+  uri: 'https://discord-server-clone-oak.herokuapp.com/'
 });
 
 const wsLink =
     typeof window !== 'undefined'
         ? new GraphQLWsLink(
                 createClient({
-                    url:'ws://localhost:2000/graphql',
+                    url:'ws://discord-server-clone-oak.herokuapp.com/graphql',
                 })
           )
         : null;
