@@ -14,7 +14,7 @@ const wsLink =
     typeof window !== 'undefined'
         ? new GraphQLWsLink(
                 createClient({
-                    url:'ws://discord-server-clone-oak.herokuapp.com/graphql',
+                    url:'wss://discord-server-clone-oak.herokuapp.com/graphql',
                 })
           )
         : null;
