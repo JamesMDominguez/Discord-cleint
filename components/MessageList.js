@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
+import { useRef, useEffect } from 'react'
 
 const GET_USER_DATA = gql`
 query GetMessages($channelId: String!) {
@@ -26,8 +27,11 @@ subscription MessageCreated {
 export default function MessageList() {
     const router = useRouter()
     const { id = [] } = router.query
-    const { data, loading, error, subscribeToMore } = useQuery(GET_USER_DATA, { variables: { channelId: id[1] } });
-
+    const { data = [], loading, error, subscribeToMore } = useQuery(GET_USER_DATA, { variables: { channelId: id[1] } });
+    const messageRef = useRef()
+    const scrollToBottom = () => {
+        messageRef.current?.scrollIntoView({ behavior: "smooth" })
+      }    
     subscribeToMore({
         document: MESSAGE_SUB,
         updateQuery: (prev, { subscriptionData }) => {
@@ -42,6 +46,8 @@ export default function MessageList() {
             });
         }
     })
+    useEffect(scrollToBottom, [data.getMessages]);
+
 
     if (loading || data === 'undefined') return <div />;
     if (error) {
@@ -64,6 +70,7 @@ export default function MessageList() {
                     )
                 })
             }
+            <div ref={messageRef} />
         </>
     )
 }
